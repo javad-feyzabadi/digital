@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Product(models.Model):
 
-    title = models.CharField(_('title'),max_length = 50)
+    title = models.CharField(_('title'),max_length = 55)
     description = models.TextField(_('description'),blank = True)
     avatar = models.ImageField(_('avatar'),blank=True,upload_to='products')
     is_enable = models.BooleanField(_('is enable'),default=True)
