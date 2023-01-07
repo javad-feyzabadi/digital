@@ -8,7 +8,7 @@ class Category(models.Model):
     description = models.TextField(_('description'), blank = True)
     avatar = models.ImageField(_('avatar'), blank=True,upload_to='categories')
     is_enable = models.BooleanField(_('is enable'), default=True)
-    created_time = models.DateTimeField(_('created time'), auto_created=True)
+    created_time = models.DateTimeField(_('created time'), auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'), auto_now=True)
 
     class Meta:
@@ -16,13 +16,16 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
+    def __str__(self):
+        return self.title
+
 class Product(models.Model):
 
     title = models.CharField(_('title'),max_length = 55)
     description = models.TextField(_('description'),blank = True)
-    avatar = models.ImageField(_('avatar'),blank=True,upload_to='products')
+    avatar = models.ImageField(_('avatar'),blank=True,upload_to='products/')
     is_enable = models.BooleanField(_('is enable'),default=True)
-    created_time = models.DateTimeField(_('created time'),auto_created=True)
+    created_time = models.DateTimeField(_('created time'),auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'),auto_now=True)
     categories = models.ManyToManyField('category',verbose_name=_('category'),blank=True)
 
@@ -38,7 +41,7 @@ class File(models.Model):
     title = models.CharField(_('title'),max_length = 50)
     file = models.FileField(_('file'),upload_to ='files/%Y/%m/%d/')
     is_enable = models.BooleanField(_('is enable'),default=True)
-    created_time = models.DateTimeField(_('created time'),auto_created=True)
+    created_time = models.DateTimeField(_('created time'),auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'),auto_now=True)
 
 
