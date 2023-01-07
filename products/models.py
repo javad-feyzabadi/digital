@@ -39,9 +39,19 @@ class Product(models.Model):
 
 
 class File(models.Model):
+    FILE_AUDIO =1
+    FILE_VIDEO =2
+    FILE_PDF =3
+    FILE_TYPE = (
+        (FILE_AUDIO ,_('audio')),
+        (FILE_VIDEO,_('video')),
+        (FILE_PDF ,_('pdf'))
+    )
 
-    product = models.ForeignKey('Product',verbose_name=_('product'),on_delete=models.CASCADE)
+
+    product = models.ForeignKey('Product',related_name='files', verbose_name=_('product'),on_delete=models.CASCADE)
     title = models.CharField(_('title'),max_length = 50)
+    file_type = models.PositiveSmallIntegerField(_('file type'),choices=FILE_TYPE)
     file = models.FileField(_('file'),upload_to ='files/%Y/%m/%d/')
     is_enable = models.BooleanField(_('is enable'),default=True)
     created_time = models.DateTimeField(_('created time'),auto_now_add=True)
