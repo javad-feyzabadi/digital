@@ -34,6 +34,9 @@ class Product(models.Model):
         verbose_name = 'product'
         verbose_name_plural = 'products'
 
+    def __str__(self):
+        return self.title
+
 
 class File(models.Model):
 
@@ -49,3 +52,6 @@ class File(models.Model):
         db_table = 'files'
         verbose_name = 'file'
         verbose_name_plural = 'files'
+
+    def __str__(self):
+        return self.title
